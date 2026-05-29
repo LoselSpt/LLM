@@ -1,0 +1,88 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "machine_shape": "hm",
+      "gpuType": "T4",
+      "provenance": []
+    },
+    "accelerator": "GPU",
+    "kaggle": {
+      "accelerator": "gpu"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "code",
+      "source": [
+        "!pip install -U llama-cpp-python"
+      ],
+      "metadata": {
+        "id": "1VNsm4295FT_"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "## Local Inference on GPU\n",
+        "Model page: https://huggingface.co/HauhauCS/Gemma-4-E4B-Uncensored-HauhauCS-Aggressive\n",
+        "\n",
+        "⚠️ If the generated code snippets do not work, please open an issue on either the [model repo](https://huggingface.co/HauhauCS/Gemma-4-E4B-Uncensored-HauhauCS-Aggressive)\n",
+        "\t\t\tand/or on [huggingface.js](https://github.com/huggingface/huggingface.js/blob/main/packages/tasks/src/model-libraries-snippets.ts) 🙏"
+      ],
+      "metadata": {
+        "id": "wX1oDHRT5FUC"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# !pip install llama-cpp-python\n",
+        "\n",
+        "from llama_cpp import Llama\n",
+        "\n",
+        "llm = Llama.from_pretrained(\n",
+        "\trepo_id=\"HauhauCS/Gemma-4-E4B-Uncensored-HauhauCS-Aggressive\",\n",
+        "\tfilename=\"Gemma-4-E4B-Uncensored-HauhauCS-Aggressive-IQ3_M.gguf\",\n",
+        ")\n"
+      ],
+      "metadata": {
+        "id": "4Z3CsC-l5FUD"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "llm.create_chat_completion(\n",
+        "\tmessages = [\n",
+        "\t\t{\n",
+        "\t\t\t\"role\": \"user\",\n",
+        "\t\t\t\"content\": [\n",
+        "\t\t\t\t{\n",
+        "\t\t\t\t\t\"type\": \"text\",\n",
+        "\t\t\t\t\t\"text\": \"Describe this image in one sentence.\"\n",
+        "\t\t\t\t},\n",
+        "\t\t\t\t{\n",
+        "\t\t\t\t\t\"type\": \"image_url\",\n",
+        "\t\t\t\t\t\"image_url\": {\n",
+        "\t\t\t\t\t\t\"url\": \"https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg\"\n",
+        "\t\t\t\t\t}\n",
+        "\t\t\t\t}\n",
+        "\t\t\t]\n",
+        "\t\t}\n",
+        "\t]\n",
+        ")"
+      ],
+      "metadata": {
+        "id": "n0-Gb1u35FUG"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
